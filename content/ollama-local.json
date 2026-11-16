@@ -1,0 +1,27 @@
+{
+  "slug": "ollama-local",
+  "title": "用 Ollama 在本機執行語言模型",
+  "category": "本地部署",
+  "summary": "從終端機啟動本機模型，再透過 HTTP API 把它接到自己的程式。",
+  "sections": [
+    {
+      "heading": "本機部署的工作範圍",
+      "paragraphs": ["Ollama 提供模型下載、管理與推論介面。以下以本機模型為例，推論由自己的電腦執行，應用程式可以透過本機 HTTP 服務送出請求。首次下載模型需要網路，也需要足夠的磁碟空間。"]
+    },
+    {
+      "heading": "啟動模型與呼叫 API",
+      "paragraphs": ["安裝並啟動 Ollama 後，在終端機執行第一行。首次執行時，Ollama 會下載對應模型。之後另開一個終端機執行 Python 範例，向本機服務送出一輪對話。命令和程式碼分開執行。", "請求中的 stream 設為 false，讓程式取得完整的 JSON 回應。這段程式只用到 Python 標準函式庫，適合先確認 API 通路。"],
+      "code": "ollama run llama3.2:1b\n\n# Python 範例\nimport json\nfrom urllib.request import Request, urlopen\n\npayload = {\n    \"model\": \"llama3.2:1b\",\n    \"messages\": [{\"role\": \"user\", \"content\": \"請用一句話介紹 RAG。\"}],\n    \"stream\": False,\n}\nrequest = Request(\n    \"http://localhost:11434/api/chat\",\n    data=json.dumps(payload).encode(\"utf-8\"),\n    headers={\"Content-Type\": \"application/json\"},\n)\nwith urlopen(request, timeout=120) as response:\n    print(json.load(response)[\"message\"][\"content\"])"
+    },
+    {
+      "heading": "排查連線與資源問題",
+      "paragraphs": ["連線失敗時先確認 Ollama 正在執行，並用 ollama list 確認已下載的模型標籤與請求一致。生成速度與記憶體用量取決於硬體、模型大小、量化方式與上下文長度。本文的命令是操作範例，未實測推論效能。"]
+    }
+  ],
+  "takeaways": ["先用終端機確認模型可載入，再測試應用程式的 API 呼叫。", "保留本機預設的監聽範圍。需要對外提供服務時，應先規劃驗證和存取權限。"],
+  "references": [
+    {"label": "Ollama Quickstart", "url": "https://docs.ollama.com/quickstart"},
+    {"label": "Ollama Chat API", "url": "https://docs.ollama.com/api/chat"},
+    {"label": "Ollama 模型庫 · Llama 3.2", "url": "https://ollama.com/library/llama3.2:1b"}
+  ]
+}

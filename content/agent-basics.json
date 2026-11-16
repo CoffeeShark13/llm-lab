@@ -1,0 +1,25 @@
+{
+  "slug": "agent-basics",
+  "title": "AI Agent 的任務執行流程",
+  "category": "AI Agent",
+  "summary": "用搜尋筆記的案例理解工具呼叫、結果回饋與停止條件。",
+  "sections": [
+    {
+      "heading": "任務、工具與執行迴圈",
+      "paragraphs": ["AI Agent 可以根據任務和目前取得的資訊選擇工具，讀取執行結果，再決定繼續查詢或回覆。應用程式負責驗證參數及實際執行工具，並把成功或失敗結果傳回模型。"]
+    },
+    {
+      "heading": "範例：整理三份技術筆記",
+      "paragraphs": ["假設使用者要找三份與模型部署有關的筆記，可提供搜尋索引和讀取文章兩個工具。Agent 先搜尋候選文章，再讀取必要段落，最後回傳每份筆記的摘要和可追溯連結。若只找到兩份，就說明搜尋結果。"],
+      "code": "接收任務 → 選擇唯讀工具 → 檢查工具結果\n資訊充足 → 摘要並附來源\n資訊不足 → 調整查詢或回報缺漏"
+    },
+    {
+      "heading": "設定權限與停止條件",
+      "paragraphs": ["從完成任務所需的最小權限開始，限制工具呼叫次數與時間，並定義找不到資料、工具逾時或參數錯誤時的行為。來源文件與工具回傳值應當作查詢資料處理。"]
+    }
+  ],
+  "takeaways": ["工具應有清楚的輸入、輸出及錯誤格式。", "用找不到資料和工具逾時的案例檢查 Agent 是否能安全停止。"],
+  "references": [
+    {"label": "OpenAI · A practical guide to building AI agents", "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/"}
+  ]
+}

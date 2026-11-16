@@ -1,0 +1,25 @@
+{
+  "slug": "rag-basics",
+  "title": "RAG：讓模型根據文件回答",
+  "category": "RAG",
+  "summary": "從文件切分、檢索到帶來源的回答，拆解檢索增強生成的基本流程。",
+  "sections": [
+    {
+      "heading": "檢索如何補充模型的知識",
+      "paragraphs": ["檢索增強生成（Retrieval-Augmented Generation, RAG）會在回答前找出相關資料，將內容交給語言模型作為作答時的上下文。以課程講義為例，使用者詢問某堂課的作業要求時，系統可以找出相關講義段落再生成回答。"]
+    },
+    {
+      "heading": "從文件建索引到回答",
+      "paragraphs": ["先依標題或段落切分文件，為每個片段保留文件名稱、章節與來源網址。查詢時可用關鍵字、向量相似度，或合併兩種結果，再將前幾個相關片段放入提示，要求模型引用用來作答的片段。"],
+      "code": "建立索引：文件 → 切分段落 → 保存內容與來源\n處理查詢：問題 → 檢索 → 選取片段 → 生成回答與引用"
+    },
+    {
+      "heading": "分開評估檢索與生成",
+      "paragraphs": ["挑幾個有已知答案的實際問題，先看支援答案的段落是否出現在前 k 個檢索結果裡，再檢查回答是否忠於段落、引用是否指向正確位置。當資料不足時，應明確提示找不到足夠依據。", "常見失敗包括片段切得太短而失去上下文、索引版本過舊，以及模型加入來源沒有支持的細節。"]
+    }
+  ],
+  "takeaways": ["切分文件時保留章節和來源，方便回答時引用。", "同時記錄檢索是否命中以及答案是否有依據，才能辨識故障在哪一段。"],
+  "references": [
+    {"label": "Lewis 等，Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（NeurIPS 2020）", "url": "https://proceedings.nips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html"}
+  ]
+}

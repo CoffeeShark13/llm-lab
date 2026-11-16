@@ -1,0 +1,25 @@
+{
+  "slug": "kv-cache",
+  "title": "KV Cache 如何加速自回歸推論",
+  "category": "模型原理",
+  "summary": "理解注意力層為何快取 Key 和 Value，以及省下計算所需的記憶體成本。",
+  "sections": [
+    {
+      "heading": "為什麼舊 token 的 K 和 V 可以重用",
+      "paragraphs": ["在具因果遮罩的 Transformer 中，每個位置只能注意到當前及之前的位置。當序列尾端加入 token 時，已處理的 token 在各層產生的 Key（K）與 Value（V）仍可沿用。KV Cache 就是用來保存這些張量的空間。"]
+    },
+    {
+      "heading": "預填與逐步解碼",
+      "paragraphs": ["預填（prefill）階段處理輸入提示，並填入各層的快取。解碼（decode）時，模型處理最新的 token，以其 Query 對快取和當前位置的 Key 計算注意力，再以 Value 組合結果。當前 token 的 K 和 V 隨後保留給下一步使用。"],
+      "code": "prefill：處理輸入 token，建立每層的 K / V 快取\ndecode：處理最新 token，參照並擴充 K / V 快取"
+    },
+    {
+      "heading": "記憶體與上下文長度的取捨",
+      "paragraphs": ["在一般完整注意力與動態快取下，每個序列的快取用量會隨已保存的 token 數增加，也取決於層數、KV head 數、head 維度及張量資料型別。批次內有更多序列時，所需總空間通常也會增加。", "比較快取策略時，可以分開記錄首 token 延遲、後續 token 生成速度與尖峰記憶體。本文說明推論機制，未測量特定模型的加速幅度。"]
+    }
+  ],
+  "takeaways": ["KV Cache 保存已處理位置的 Key 和 Value，減少解碼時的重複運算。", "評估長上下文或多請求服務時，應把快取記憶體納入容量估算。"],
+  "references": [
+    {"label": "Hugging Face Transformers · How caching works", "url": "https://huggingface.co/docs/transformers/en/cache_explanation"}
+  ]
+}
