@@ -50,6 +50,11 @@ button, input { font: inherit; }
 .label-input { top: 24%; left: 10%; }
 .label-context { bottom: 16%; left: 16%; }
 .label-output { top: 46%; right: 9%; }
+.author { padding: 1rem 1.25rem; margin-bottom: 1.5rem; border: 1px solid var(--line); border-radius: .78rem; background: var(--surface); }
+.author h2 { font-size: 1rem; }
+.author dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem 1rem; margin: .55rem 0 0; }
+.author dt { color: var(--muted); font-size: .78rem; }
+.author dd { margin: 0; font-size: .95rem; overflow-wrap: anywhere; }
 .library { padding-block: 1.6rem 4rem; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
 .library-heading, .filter-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
 .library-heading h2 { font-size: 1.65rem; letter-spacing: -.035em; }
@@ -111,6 +116,7 @@ button, input { font: inherit; }
   .hero { padding-block: 2.5rem 1.5rem; }
   .hero-visual { min-height: 12rem; }
   .orbit-outer { width: 10.5rem; }
+  .author dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .library { padding-block: 1.1rem 2.5rem; }
   .library-heading { align-items: stretch; flex-direction: column; gap: .6rem; }
   .search { width: 100%; }
