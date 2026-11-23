@@ -1,0 +1,87 @@
+{
+  "executed_at": "2026-11-23T12:38:23.874213+00:00",
+  "question": "切分 索引 metadata Node embeddings",
+  "method": "keyword-bigram-overlap",
+  "index_sha256": "36ff4afa1b835e6262206b38ab30ec39f616eb652d7f2ab87ec7313baa5a478b",
+  "results": [
+    {
+      "id": "S03-2",
+      "source": "S03",
+      "slug": "rag-source-llamaindex",
+      "heading": "方式：Document、Node 與檢索器",
+      "text": "Document 代表一份來源資料，Node 代表其中的片段。Node 的 metadata 可關聯回原文件。Retriever 取出與問題相關的上下文，後處理可以過濾或重新排序，Response Synthesizer 依問題和片段組織回答。索引及 metadata 可以儲存，減少重建工作。",
+      "anchor": "section-2",
+      "score": 3,
+      "matched": [
+        "metadata",
+        "node",
+        "索引"
+      ]
+    },
+    {
+      "id": "S05-1",
+      "source": "S05",
+      "slug": "rag-source-langchain",
+      "heading": "概念：先建立可搜尋的文件集合",
+      "text": "LangChain 的 Deep Agents RAG 教學先建立文件索引，再讓搜尋工具取得相關片段，最後組織附有引用的答案。教學將索引工作整理為載入文件、切分、產生 embeddings 與儲存向量。",
+      "anchor": "section-1",
+      "score": 3,
+      "matched": [
+        "embeddings",
+        "切分",
+        "索引"
+      ]
+    },
+    {
+      "id": "S05-2",
+      "source": "S05",
+      "slug": "rag-source-langchain",
+      "heading": "方式：切分後保留片段與索引",
+      "text": "切分能減少搜尋與送入模型時處理的文字量。Embedding 將文字轉為向量，向量索引保存片段與向量的對應，查詢時用相似度找到相關內容。教學也展示將片段寫入檔案供 agent 分析的流程。",
+      "anchor": "section-2",
+      "score": 2,
+      "matched": [
+        "切分",
+        "索引"
+      ]
+    },
+    {
+      "id": "S05-3",
+      "source": "S05",
+      "slug": "rag-source-langchain",
+      "heading": "查閱時的路徑調整與限制",
+      "text": "2026-11-23 查閱時，原先的 /oss/python/langchain/rag 路徑轉到 /oss/python/deepagents/rag，因此本筆記採用實際頁名與網址。本專案採用本機關鍵字索引，沒有安裝 Deep Agents、建立 embeddings 或執行文件中的多 agent 範例。",
+      "anchor": "section-3",
+      "score": 2,
+      "matched": [
+        "embeddings",
+        "索引"
+      ]
+    },
+    {
+      "id": "S01-1",
+      "source": "S01",
+      "slug": "rag-source-paper",
+      "heading": "概念：兩種知識記憶",
+      "text": "Lewis 等人在 Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks 中，結合模型內的參數式記憶與外部的非參數式記憶。論文使用預訓練 seq2seq 模型生成文字，透過神經檢索器從 Wikipedia 的稠密向量索引取得段落。",
+      "anchor": "section-1",
+      "score": 1,
+      "matched": [
+        "索引"
+      ]
+    },
+    {
+      "id": "S02-2",
+      "source": "S02",
+      "slug": "rag-source-microsoft",
+      "heading": "方式：檢索、增強、生成",
+      "text": "Retrieve 先查索引或資料儲存空間；Augment 將問題與取回的資料組成提示；Generate 由模型產生回答。索引可支援關鍵字、向量或混合搜尋，也能保留文件標題、網址與檔名，協助回答引用來源。",
+      "anchor": "section-2",
+      "score": 1,
+      "matched": [
+        "索引"
+      ]
+    }
+  ],
+  "gap": ""
+}

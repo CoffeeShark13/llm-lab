@@ -1,0 +1,36 @@
+{
+  "slug": "rag-source-huggingface",
+  "title": "S04｜Hugging Face 的 RAG 模型組件",
+  "category": "RAG",
+  "summary": "從 Transformers RAG 文件辨識 tokenizer、retriever、generator 的角色與實作界線。",
+  "sections": [
+    {
+      "heading": "概念：推論時讀取外部段落",
+      "paragraphs": [
+        "Hugging Face 的 RAG 文件說明，預訓練語言模型透過神經檢索器存取外部資料，並在推論時根據相關段落生成文字。變更外部索引可更新可查詢的知識，不一定要重新訓練整個模型。"
+      ]
+    },
+    {
+      "heading": "方式：三種組件合作",
+      "paragraphs": [
+        "文件範例使用 RagTokenizer 處理文字、RagRetriever 取得段落，並以 RagSequenceForGeneration 生成輸出。範例指定模型與檢索索引，表示模型執行還需要相關權重與資料，不能只靠一份 HTML 完成。"
+      ]
+    },
+    {
+      "heading": "版本與實測限制",
+      "paragraphs": [
+        "本筆記於 2026-11-23 閱讀 Transformers 的 RAG 概述與範例，沒有下載模型、索引或執行範例。文件中的套件介面及硬體設定可能隨版本改變；此處只解釋角色，不宣稱任何版本或顯示卡相容性。"
+      ]
+    }
+  ],
+  "takeaways": [
+    "檢索與生成由不同組件合作。",
+    "更新索引與重新訓練模型是不同的操作。"
+  ],
+  "references": [
+    {
+      "label": "Hugging Face Transformers：RAG",
+      "url": "https://huggingface.co/docs/transformers/model_doc/rag"
+    }
+  ]
+}

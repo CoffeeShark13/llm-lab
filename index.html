@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="wrap topbar">
       <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">⌬</span> LLM Lab</a>
-      <nav aria-label="主選單"><a class="nav-link" href="index.html#library">文章索引</a></nav>
+      <nav aria-label="主選單"><a class="nav-link" href="index.html#library">文章索引</a> <a class="nav-link" href="wiki/index.html">RAG Wiki</a></nav>
     </div>
   </header>
   <main id="main" class="wrap">
@@ -53,7 +53,7 @@
       </div>
       <div class="filter-bar" hidden>
         <div class="filters" role="group" aria-label="文章分類"><button type="button" data-filter="" aria-pressed="true">全部</button><button type="button" data-filter="本地部署" aria-pressed="false">本地部署</button><button type="button" data-filter="RAG" aria-pressed="false">RAG</button><button type="button" data-filter="AI Agent" aria-pressed="false">AI Agent</button><button type="button" data-filter="模型原理" aria-pressed="false">模型原理</button></div>
-        <p id="result-count" role="status">4 篇文章</p>
+        <p id="result-count" role="status">11 篇文章</p>
       </div>
       <ul class="article-grid"><li class="article-card" data-category="本地部署" data-search="ollama-local 用 Ollama 在本機執行語言模型 從終端機啟動本機模型，再透過 HTTP API 把它接到自己的程式。 本地部署 DEPLOYMENT Ollama 提供模型下載、管理與推論介面。以下以本機模型為例，推論由自己的電腦執行，應用程式可以透過本機 HTTP 服務送出請求。首次下載模型需要網路，也需要足夠的磁碟空間。 本機部署的工作範圍  安裝並啟動 Ollama 後，在終端機執行第一行。首次執行時，Ollama 會下載對應模型。之後另開一個終端機執行 Python 範例，向本機服務送出一輪對話。命令和程式碼分開執行。 請求中的 stream 設為 false，讓程式取得完整的 JSON 回應。這段程式只用到 Python 標準函式庫，適合先確認 API 通路。 啟動模型與呼叫 API ollama run llama3.2:1b
 
@@ -85,6 +85,59 @@ with urlopen(request, timeout=120) as response:
             <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
             <h3>RAG：讓模型根據文件回答</h3>
             <p>從文件切分、檢索到帶來源的回答，拆解檢索增強生成的基本流程。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-evaluation-wiki Wiki 綜合筆記：生成前的證據檢查 以 S03 的評估階段與 S02 的引用資料為基礎，建立這次簡報使用的檢查方法。 RAG RETRIEVAL S03 把評估列為 RAG 的主要階段。為了檢查這份教學簡報，本專案將工作拆成三個檢查點：檢索是否找到支持段落、整理後的敘述是否符合段落、引用是否能回到來源。這是本次作業設計的檢查清單，並非官方文件規定的固定評分表。 概念：評估要能指出問題位置  Codex 先讀取本機查詢紀錄 01-concept.json、02-indexing.json、03-evaluation.json，整理概念、索引及評估的大綱。每頁簡報保存證據段落編號與 Wiki 頁面，生成器會檢查編號存在；語意是否受到支持，仍由閱讀原筆記與來源判斷。 本次也用「量子糾纏」查詢測試資料缺口，結果沒有命中，工具回傳補資料或改寫查詢的提示。這只證明該次查詢沒有命中，不能推論系統已能偵測所有沒有根據的回答。 方式：先查詢，再整理與逐頁對照  這次觀察到來源路徑轉址，以及命令列輸出編碼問題。前者促使來源網址與頁名核對提前到 ingest 前，後者則修正輸出編碼。單次執行不足以統計哪個節點最常出錯，因此反思記錄具體問題與修改，不宣稱長期錯誤率或模型正確率。 限制：沒有足夠樣本判定最常出錯的節點  編號存在檢查無法代替語意核對。 資料不足時回到查詢或來源整理，並保留實際紀錄。">
+          <a href="pages/rag-evaluation-wiki.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Wiki 綜合筆記：生成前的證據檢查</h3>
+            <p>以 S03 的評估階段與 S02 的引用資料為基礎，建立這次簡報使用的檢查方法。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-indexing-wiki Wiki 綜合筆記：從文件到可引用的片段 交叉整理 S02、S03 與 S05，說明資料準備、片段來源與本機 Wiki 的索引界線。 RAG RETRIEVAL 依 S03 的五階段說明與 S05 的索引教學，資料載入與索引可以先完成，查詢時再取出相關片段。這能讓資料整理流程與回答流程各自檢查。這份 Wiki 綜合筆記由 Codex 讀取本機查詢紀錄 02-indexing.json 後整理。 概念：先整理資料，再處理問題  S03 說明 Document 與 Node 的關係，S02 提到索引可儲存標題、網址及檔名。本專案據此為每個段落保留來源編號、文章 slug 與章節錨點，讓讀者從搜尋結果回到文章，並由參考資料開啟原始文件。S05 的向量化步驟屬於官方教學，本機 Wiki 使用文字關鍵字比對。 方式：保留片段的文件與章節 來源筆記 S01–S05
+  → ingest：驗證 JSON、建立文章與段落索引
+  → query：依關鍵字取回段落編號
+  → Codex：閱讀段落並整理教學大綱
+  → 檢查：確認每頁的引用與 Wiki 內容對應 本機查詢只回傳文字片段，未呼叫 LLM 或建立 embeddings。結果可能因用詞不同而漏掉資料，也可能命中提到某技術卻未解釋該技術的段落。生成前仍須閱讀全文，確認片段確實支持要寫的句子。 限制：命中關鍵字不代表回答有依據  片段編號與章節連結讓來源可以追溯。 關鍵字查詢負責提供候選證據，AI 整理後仍需檢查。">
+          <a href="pages/rag-indexing-wiki.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Wiki 綜合筆記：從文件到可引用的片段</h3>
+            <p>交叉整理 S02、S03 與 S05，說明資料準備、片段來源與本機 Wiki 的索引界線。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-source-huggingface S04｜Hugging Face 的 RAG 模型組件 從 Transformers RAG 文件辨識 tokenizer、retriever、generator 的角色與實作界線。 RAG RETRIEVAL Hugging Face 的 RAG 文件說明，預訓練語言模型透過神經檢索器存取外部資料，並在推論時根據相關段落生成文字。變更外部索引可更新可查詢的知識，不一定要重新訓練整個模型。 概念：推論時讀取外部段落  文件範例使用 RagTokenizer 處理文字、RagRetriever 取得段落，並以 RagSequenceForGeneration 生成輸出。範例指定模型與檢索索引，表示模型執行還需要相關權重與資料，不能只靠一份 HTML 完成。 方式：三種組件合作  本筆記於 2026-11-23 閱讀 Transformers 的 RAG 概述與範例，沒有下載模型、索引或執行範例。文件中的套件介面及硬體設定可能隨版本改變；此處只解釋角色，不宣稱任何版本或顯示卡相容性。 版本與實測限制  檢索與生成由不同組件合作。 更新索引與重新訓練模型是不同的操作。">
+          <a href="pages/rag-source-huggingface.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>S04｜Hugging Face 的 RAG 模型組件</h3>
+            <p>從 Transformers RAG 文件辨識 tokenizer、retriever、generator 的角色與實作界線。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-source-langchain S05｜LangChain 的索引與檢索工作流 閱讀 Deep Agents RAG 教學中的資料載入、切分、向量化與儲存步驟，辨識示範與本專案的差異。 RAG RETRIEVAL LangChain 的 Deep Agents RAG 教學先建立文件索引，再讓搜尋工具取得相關片段，最後組織附有引用的答案。教學將索引工作整理為載入文件、切分、產生 embeddings 與儲存向量。 概念：先建立可搜尋的文件集合  切分能減少搜尋與送入模型時處理的文字量。Embedding 將文字轉為向量，向量索引保存片段與向量的對應，查詢時用相似度找到相關內容。教學也展示將片段寫入檔案供 agent 分析的流程。 方式：切分後保留片段與索引  2026-11-23 查閱時，原先的 /oss/python/langchain/rag 路徑轉到 /oss/python/deepagents/rag，因此本筆記採用實際頁名與網址。本專案採用本機關鍵字索引，沒有安裝 Deep Agents、建立 embeddings 或執行文件中的多 agent 範例。 查閱時的路徑調整與限制  索引階段與回答階段可以分開執行。 來源網址可能轉址，匯入前應核對實際內容。">
+          <a href="pages/rag-source-langchain.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>S05｜LangChain 的索引與檢索工作流</h3>
+            <p>閱讀 Deep Agents RAG 教學中的資料載入、切分、向量化與儲存步驟，辨識示範與本專案的差異。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-source-llamaindex S03｜LlamaIndex 的資料準備與評估 從載入、索引、儲存到查詢與評估，整理 RAG 系統的主要階段。 RAG RETRIEVAL LlamaIndex 將 RAG 分為 Loading、Indexing、Storing、Querying、Evaluation 五個階段。資料先整理成可查詢的結構，再由問題選出相關上下文，將問題與上下文一起交給 LLM。 概念：資料準備與查詢分開  Document 代表一份來源資料，Node 代表其中的片段。Node 的 metadata 可關聯回原文件。Retriever 取出與問題相關的上下文，後處理可以過濾或重新排序，Response Synthesizer 依問題和片段組織回答。索引及 metadata 可以儲存，減少重建工作。 方式：Document、Node 與檢索器  官方文件把評估列為必要階段，用來比較策略或改動後的正確性、忠實度與速度。本筆記於 2026-11-23 查閱 Introduction to RAG；沒有安裝 LlamaIndex，也沒有測量回答速度或正確率。 限制：改動後需要評估  片段要保留回到文件的 metadata。 更換檢索策略後，應重新檢查效果。">
+          <a href="pages/rag-source-llamaindex.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>S03｜LlamaIndex 的資料準備與評估</h3>
+            <p>從載入、索引、儲存到查詢與評估，整理 RAG 系統的主要階段。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-source-microsoft S02｜Microsoft 的 RAG 與索引概念 整理 Retrieve、Augment、Generate 的工作順序，以及索引和來源欄位的用途。 RAG RETRIEVAL Microsoft 文件把 RAG 描述為將搜尋與 LLM 結合的模式。當問題涉及私人文件或經常變動的資訊時，應用可以先取得相關內容，再將內容放進模型輸入，讓回答依據這些資料。 概念：依據自己的資料回答  Retrieve 先查索引或資料儲存空間；Augment 將問題與取回的資料組成提示；Generate 由模型產生回答。索引可支援關鍵字、向量或混合搜尋，也能保留文件標題、網址與檔名，協助回答引用來源。 方式：檢索、增強、生成  本筆記依官方概念頁的 RAG 流程與索引章節整理，查閱日期為 2026-11-23。頁面也介紹 Foundry 服務與 agentic retrieval；本專案只引用通用概念，沒有建立 Azure 服務，亦未驗證任何雲端功能。 應用界線與查閱紀錄  先取得相關資料，再交給模型生成回答。 來源標題和網址應與檢索內容一起保存。">
+          <a href="pages/rag-source-microsoft.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>S02｜Microsoft 的 RAG 與索引概念</h3>
+            <p>整理 Retrieve、Augment、Generate 的工作順序，以及索引和來源欄位的用途。</p>
+          </a>
+        </li>
+        <li class="article-card" data-category="RAG" data-search="rag-source-paper S01｜RAG 原始論文閱讀筆記 整理 Lewis 等人的 RAG 論文摘要，理解模型參數與外部檢索資料如何共同參與生成。 RAG RETRIEVAL Lewis 等人在 Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks 中，結合模型內的參數式記憶與外部的非參數式記憶。論文使用預訓練 seq2seq 模型生成文字，透過神經檢索器從 Wikipedia 的稠密向量索引取得段落。 概念：兩種知識記憶  論文比較兩種形式：RAG-Sequence 在整段生成序列中使用相同的檢索段落，RAG-Token 允許不同 token 使用不同段落。這裡的 RAG 是具體模型設計，不能將它的所有訓練細節直接套到每個現代 RAG 應用。 方式：讓生成以檢索段落為條件  本筆記依 arXiv v4 摘要整理，查閱日期為 2026-11-23。論文報告的實驗結果屬於作者的資料集與設定，本專案未重現模型訓練或效能測試，也不把論文結果當成本網站的實測成果。 閱讀範圍與限制  外部檢索內容能成為文字生成的依據。 區分原始 RAG 模型與後來泛稱的檢索增強應用模式。">
+          <a href="pages/rag-source-paper.html">
+            <div class="card-meta"><span class="tag">RAG</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>S01｜RAG 原始論文閱讀筆記</h3>
+            <p>整理 Lewis 等人的 RAG 論文摘要，理解模型參數與外部檢索資料如何共同參與生成。</p>
           </a>
         </li>
         <li class="article-card" data-category="AI Agent" data-search="agent-basics AI Agent 的任務執行流程 用搜尋筆記的案例理解工具呼叫、結果回饋與停止條件。 AI Agent AGENTS AI Agent 可以根據任務和目前取得的資訊選擇工具，讀取執行結果，再決定繼續查詢或回覆。應用程式負責驗證參數及實際執行工具，並把成功或失敗結果傳回模型。 任務、工具與執行迴圈  假設使用者要找三份與模型部署有關的筆記，可提供搜尋索引和讀取文章兩個工具。Agent 先搜尋候選文章，再讀取必要段落，最後回傳每份筆記的摘要和可追溯連結。若只找到兩份，就說明搜尋結果。 範例：整理三份技術筆記 接收任務 → 選擇唯讀工具 → 檢查工具結果

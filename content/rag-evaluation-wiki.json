@@ -1,0 +1,16 @@
+{
+  "slug": "rag-evaluation-wiki",
+  "title": "Wiki 綜合筆記：生成前的證據檢查",
+  "category": "RAG",
+  "summary": "以 S03 的評估階段與 S02 的引用資料為基礎，建立這次簡報使用的檢查方法。",
+  "sections": [
+    {"heading": "概念：評估要能指出問題位置", "paragraphs": ["S03 把評估列為 RAG 的主要階段。為了檢查這份教學簡報，本專案將工作拆成三個檢查點：檢索是否找到支持段落、整理後的敘述是否符合段落、引用是否能回到來源。這是本次作業設計的檢查清單，並非官方文件規定的固定評分表。"]},
+    {"heading": "方式：先查詢，再整理與逐頁對照", "paragraphs": ["Codex 先讀取本機查詢紀錄 01-concept.json、02-indexing.json、03-evaluation.json，整理概念、索引及評估的大綱。每頁簡報保存證據段落編號與 Wiki 頁面，生成器會檢查編號存在；語意是否受到支持，仍由閱讀原筆記與來源判斷。", "本次也用「量子糾纏」查詢測試資料缺口，結果沒有命中，工具回傳補資料或改寫查詢的提示。這只證明該次查詢沒有命中，不能推論系統已能偵測所有沒有根據的回答。"]},
+    {"heading": "限制：沒有足夠樣本判定最常出錯的節點", "paragraphs": ["這次觀察到來源路徑轉址，以及命令列輸出編碼問題。前者促使來源網址與頁名核對提前到 ingest 前，後者則修正輸出編碼。單次執行不足以統計哪個節點最常出錯，因此反思記錄具體問題與修改，不宣稱長期錯誤率或模型正確率。"]}
+  ],
+  "takeaways": ["編號存在檢查無法代替語意核對。", "資料不足時回到查詢或來源整理，並保留實際紀錄。"],
+  "references": [
+    {"label": "S02｜Microsoft：RAG and indexes", "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation"},
+    {"label": "S03｜LlamaIndex：Introduction to RAG", "url": "https://developers.llamaindex.ai/python/framework/understanding/rag/"}
+  ]
+}

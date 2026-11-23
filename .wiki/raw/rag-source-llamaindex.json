@@ -1,0 +1,13 @@
+{
+  "slug": "rag-source-llamaindex",
+  "title": "S03｜LlamaIndex 的資料準備與評估",
+  "category": "RAG",
+  "summary": "從載入、索引、儲存到查詢與評估，整理 RAG 系統的主要階段。",
+  "sections": [
+    {"heading": "概念：資料準備與查詢分開", "paragraphs": ["LlamaIndex 將 RAG 分為 Loading、Indexing、Storing、Querying、Evaluation 五個階段。資料先整理成可查詢的結構，再由問題選出相關上下文，將問題與上下文一起交給 LLM。"]},
+    {"heading": "方式：Document、Node 與檢索器", "paragraphs": ["Document 代表一份來源資料，Node 代表其中的片段。Node 的 metadata 可關聯回原文件。Retriever 取出與問題相關的上下文，後處理可以過濾或重新排序，Response Synthesizer 依問題和片段組織回答。索引及 metadata 可以儲存，減少重建工作。"]},
+    {"heading": "限制：改動後需要評估", "paragraphs": ["官方文件把評估列為必要階段，用來比較策略或改動後的正確性、忠實度與速度。本筆記於 2026-11-23 查閱 Introduction to RAG；沒有安裝 LlamaIndex，也沒有測量回答速度或正確率。"]}
+  ],
+  "takeaways": ["片段要保留回到文件的 metadata。", "更換檢索策略後，應重新檢查效果。"],
+  "references": [{"label": "LlamaIndex：Introduction to RAG", "url": "https://developers.llamaindex.ai/python/framework/understanding/rag/"}]
+}

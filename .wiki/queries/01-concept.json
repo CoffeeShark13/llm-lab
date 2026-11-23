@@ -1,0 +1,91 @@
+{
+  "executed_at": "2026-11-23T12:38:23.756494+00:00",
+  "question": "RAG 檢索 增強 生成 記憶",
+  "method": "keyword-bigram-overlap",
+  "index_sha256": "36ff4afa1b835e6262206b38ab30ec39f616eb652d7f2ab87ec7313baa5a478b",
+  "results": [
+    {
+      "id": "S01-1",
+      "source": "S01",
+      "slug": "rag-source-paper",
+      "heading": "概念：兩種知識記憶",
+      "text": "Lewis 等人在 Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks 中，結合模型內的參數式記憶與外部的非參數式記憶。論文使用預訓練 seq2seq 模型生成文字，透過神經檢索器從 Wikipedia 的稠密向量索引取得段落。",
+      "anchor": "section-1",
+      "score": 3,
+      "matched": [
+        "檢索",
+        "生成",
+        "記憶"
+      ]
+    },
+    {
+      "id": "S01-2",
+      "source": "S01",
+      "slug": "rag-source-paper",
+      "heading": "方式：讓生成以檢索段落為條件",
+      "text": "論文比較兩種形式：RAG-Sequence 在整段生成序列中使用相同的檢索段落，RAG-Token 允許不同 token 使用不同段落。這裡的 RAG 是具體模型設計，不能將它的所有訓練細節直接套到每個現代 RAG 應用。",
+      "anchor": "section-2",
+      "score": 3,
+      "matched": [
+        "rag",
+        "檢索",
+        "生成"
+      ]
+    },
+    {
+      "id": "S02-2",
+      "source": "S02",
+      "slug": "rag-source-microsoft",
+      "heading": "方式：檢索、增強、生成",
+      "text": "Retrieve 先查索引或資料儲存空間；Augment 將問題與取回的資料組成提示；Generate 由模型產生回答。索引可支援關鍵字、向量或混合搜尋，也能保留文件標題、網址與檔名，協助回答引用來源。",
+      "anchor": "section-2",
+      "score": 3,
+      "matched": [
+        "增強",
+        "檢索",
+        "生成"
+      ]
+    },
+    {
+      "id": "S04-1",
+      "source": "S04",
+      "slug": "rag-source-huggingface",
+      "heading": "概念：推論時讀取外部段落",
+      "text": "Hugging Face 的 RAG 文件說明，預訓練語言模型透過神經檢索器存取外部資料，並在推論時根據相關段落生成文字。變更外部索引可更新可查詢的知識，不一定要重新訓練整個模型。",
+      "anchor": "section-1",
+      "score": 3,
+      "matched": [
+        "rag",
+        "檢索",
+        "生成"
+      ]
+    },
+    {
+      "id": "S04-2",
+      "source": "S04",
+      "slug": "rag-source-huggingface",
+      "heading": "方式：三種組件合作",
+      "text": "文件範例使用 RagTokenizer 處理文字、RagRetriever 取得段落，並以 RagSequenceForGeneration 生成輸出。範例指定模型與檢索索引，表示模型執行還需要相關權重與資料，不能只靠一份 HTML 完成。",
+      "anchor": "section-2",
+      "score": 3,
+      "matched": [
+        "rag",
+        "檢索",
+        "生成"
+      ]
+    },
+    {
+      "id": "S02-1",
+      "source": "S02",
+      "slug": "rag-source-microsoft",
+      "heading": "概念：依據自己的資料回答",
+      "text": "Microsoft 文件把 RAG 描述為將搜尋與 LLM 結合的模式。當問題涉及私人文件或經常變動的資訊時，應用可以先取得相關內容，再將內容放進模型輸入，讓回答依據這些資料。",
+      "anchor": "section-1",
+      "score": 1,
+      "matched": [
+        "rag"
+      ]
+    }
+  ],
+  "gap": ""
+}

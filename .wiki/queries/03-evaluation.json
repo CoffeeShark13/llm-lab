@@ -1,0 +1,83 @@
+{
+  "executed_at": "2026-11-23T12:38:23.989307+00:00",
+  "question": "評估 引用 版本 限制",
+  "method": "keyword-bigram-overlap",
+  "index_sha256": "36ff4afa1b835e6262206b38ab30ec39f616eb652d7f2ab87ec7313baa5a478b",
+  "results": [
+    {
+      "id": "S03-3",
+      "source": "S03",
+      "slug": "rag-source-llamaindex",
+      "heading": "限制：改動後需要評估",
+      "text": "官方文件把評估列為必要階段，用來比較策略或改動後的正確性、忠實度與速度。本筆記於 2026-11-23 查閱 Introduction to RAG；沒有安裝 LlamaIndex，也沒有測量回答速度或正確率。",
+      "anchor": "section-3",
+      "score": 2,
+      "matched": [
+        "評估",
+        "限制"
+      ]
+    },
+    {
+      "id": "S04-3",
+      "source": "S04",
+      "slug": "rag-source-huggingface",
+      "heading": "版本與實測限制",
+      "text": "本筆記於 2026-11-23 閱讀 Transformers 的 RAG 概述與範例，沒有下載模型、索引或執行範例。文件中的套件介面及硬體設定可能隨版本改變；此處只解釋角色，不宣稱任何版本或顯示卡相容性。",
+      "anchor": "section-3",
+      "score": 2,
+      "matched": [
+        "版本",
+        "限制"
+      ]
+    },
+    {
+      "id": "S01-3",
+      "source": "S01",
+      "slug": "rag-source-paper",
+      "heading": "閱讀範圍與限制",
+      "text": "本筆記依 arXiv v4 摘要整理，查閱日期為 2026-11-23。論文報告的實驗結果屬於作者的資料集與設定，本專案未重現模型訓練或效能測試，也不把論文結果當成本網站的實測成果。",
+      "anchor": "section-3",
+      "score": 1,
+      "matched": [
+        "限制"
+      ]
+    },
+    {
+      "id": "S02-2",
+      "source": "S02",
+      "slug": "rag-source-microsoft",
+      "heading": "方式：檢索、增強、生成",
+      "text": "Retrieve 先查索引或資料儲存空間；Augment 將問題與取回的資料組成提示；Generate 由模型產生回答。索引可支援關鍵字、向量或混合搜尋，也能保留文件標題、網址與檔名，協助回答引用來源。",
+      "anchor": "section-2",
+      "score": 1,
+      "matched": [
+        "引用"
+      ]
+    },
+    {
+      "id": "S02-3",
+      "source": "S02",
+      "slug": "rag-source-microsoft",
+      "heading": "應用界線與查閱紀錄",
+      "text": "本筆記依官方概念頁的 RAG 流程與索引章節整理，查閱日期為 2026-11-23。頁面也介紹 Foundry 服務與 agentic retrieval；本專案只引用通用概念，沒有建立 Azure 服務，亦未驗證任何雲端功能。",
+      "anchor": "section-3",
+      "score": 1,
+      "matched": [
+        "引用"
+      ]
+    },
+    {
+      "id": "S05-1",
+      "source": "S05",
+      "slug": "rag-source-langchain",
+      "heading": "概念：先建立可搜尋的文件集合",
+      "text": "LangChain 的 Deep Agents RAG 教學先建立文件索引，再讓搜尋工具取得相關片段，最後組織附有引用的答案。教學將索引工作整理為載入文件、切分、產生 embeddings 與儲存向量。",
+      "anchor": "section-1",
+      "score": 1,
+      "matched": [
+        "引用"
+      ]
+    }
+  ],
+  "gap": ""
+}

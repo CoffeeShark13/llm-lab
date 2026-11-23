@@ -1,0 +1,13 @@
+{
+  "slug": "rag-source-langchain",
+  "title": "S05｜LangChain 的索引與檢索工作流",
+  "category": "RAG",
+  "summary": "閱讀 Deep Agents RAG 教學中的資料載入、切分、向量化與儲存步驟，辨識示範與本專案的差異。",
+  "sections": [
+    {"heading": "概念：先建立可搜尋的文件集合", "paragraphs": ["LangChain 的 Deep Agents RAG 教學先建立文件索引，再讓搜尋工具取得相關片段，最後組織附有引用的答案。教學將索引工作整理為載入文件、切分、產生 embeddings 與儲存向量。"]},
+    {"heading": "方式：切分後保留片段與索引", "paragraphs": ["切分能減少搜尋與送入模型時處理的文字量。Embedding 將文字轉為向量，向量索引保存片段與向量的對應，查詢時用相似度找到相關內容。教學也展示將片段寫入檔案供 agent 分析的流程。"]},
+    {"heading": "查閱時的路徑調整與限制", "paragraphs": ["2026-11-23 查閱時，原先的 /oss/python/langchain/rag 路徑轉到 /oss/python/deepagents/rag，因此本筆記採用實際頁名與網址。本專案採用本機關鍵字索引，沒有安裝 Deep Agents、建立 embeddings 或執行文件中的多 agent 範例。"]}
+  ],
+  "takeaways": ["索引階段與回答階段可以分開執行。", "來源網址可能轉址，匯入前應核對實際內容。"],
+  "references": [{"label": "LangChain：Retrieval Augmented Generation (RAG) with Deep Agents", "url": "https://docs.langchain.com/oss/python/deepagents/rag"}]
+}

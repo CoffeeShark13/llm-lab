@@ -10,6 +10,9 @@ LLM Lab 是繁體中文的大型語言模型技術筆記網站，面向初學者
 - `assets/style.css`：所有頁面共用樣式；`assets/site.js`：首頁搜尋與篩選。
 - `README.md`：執行及部署方法。`.nojekyll`：GitHub Pages 不進行 Jekyll 處理。
 - 所有站內連結及資源使用相對路徑，以支援 GitHub Pages 專案子路徑。
+- RAG Wiki 延伸：`.wiki/raw/*.json` 是匯入前的來源整理筆記，`scripts/wiki.py ingest` 產生 `content/rag-source-*.json` 與 `.wiki/index.json`。來源內容更新後先重新 ingest，網站文章仍只讀取 `content/`。
+- `.wiki/lesson.json`、`.wiki/workflow.json` 是簡報與流程資料，不改變文章欄位或類別；`scripts/learning.py` 由主生成器呼叫，生成 `wiki/*.html` 與 `slides/rag-intro.html`，不可手動修改生成檔。新頁面樣式、搜尋及簡報操作分別在 `assets/learning.css`、`assets/wiki.js`、`assets/slides.js`。
+- `.wiki/queries/*.json` 保存真實查詢時間、索引雜湊與候選段落；`workflow-log.md` 記錄實際操作與檢查。不得把關鍵字命中或引用編號存在，當成已通過語意正確性驗證。
 
 ## 3. 視覺與頁面規格
 - 深色背景、淺色正文、青綠色重點；統一使用 CSS 變數。保持文字對比、明顯的鍵盤焦點及手機版排版。

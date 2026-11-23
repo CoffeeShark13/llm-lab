@@ -1,0 +1,106 @@
+{
+  "title": "RAG 檢索增強生成入門",
+  "subtitle": "讓回答能回到文件中的依據",
+  "audience": "第一次認識 RAG 的大學生",
+  "slides": [
+    {
+      "id": "start", "kind": "cover", "title": "RAG：讓回答有文件依據",
+      "lead": "從「先找資料」開始，理解檢索增強生成。",
+      "items": [
+        {"label": "學習目標", "text": "說明 RAG 的基本流程，辨識檢索與生成的角色，知道如何檢查引用。"},
+        {"label": "本次成果", "text": "五份來源筆記組成檔案式 Wiki，由 Codex 查詢、整理並製作這份簡報。"}
+      ],
+      "sources": ["S01", "S02"], "evidence": ["S01-1", "S02-2"], "wiki": ["rag-source-paper", "rag-source-microsoft"]
+    },
+    {
+      "id": "why", "kind": "compare", "title": "文件提供問題需要的資訊",
+      "lead": "當問題涉及自己的文件或更新資訊，先找到相關資料。",
+      "items": [
+        {"label": "模型內的知識", "text": "預訓練模型把學到的資訊保存在參數中。外部文件可能包含它需要的其他資料。"},
+        {"label": "檢索帶來的上下文", "text": "應用取回相關段落，放進模型輸入。模型根據這些內容組織回答。"}
+      ],
+      "sources": ["S01", "S02", "S04"], "evidence": ["S01-1", "S02-1", "S04-1"], "wiki": ["rag-source-paper", "rag-source-microsoft", "rag-source-huggingface"]
+    },
+    {
+      "id": "flow", "kind": "flow", "title": "RAG 的回答分成三個步驟",
+      "lead": "檢索負責找依據，生成負責把依據寫成回答。",
+      "items": [
+        {"label": "Retrieve｜檢索", "text": "用問題查詢索引，取出相關文件片段。"},
+        {"label": "Augment｜增強", "text": "把問題和取回的片段組成模型輸入。"},
+        {"label": "Generate｜生成", "text": "模型參考上下文作答，並可附上來源。"}
+      ],
+      "sources": ["S02"], "evidence": ["S02-2"], "wiki": ["rag-source-microsoft"]
+    },
+    {
+      "id": "prepare", "kind": "flow", "title": "查詢前先把文件整理成片段",
+      "lead": "保留文件與章節資訊，回答才有辦法回到來源。",
+      "items": [
+        {"label": "載入文件", "text": "把來源內容整理為可處理的文件。"},
+        {"label": "切成片段", "text": "依內容切分，保留文件關聯與 metadata。"},
+        {"label": "建立索引", "text": "保存可查詢的結構；向量方案會用 embeddings。"},
+        {"label": "保存與更新", "text": "保留索引和 metadata，資料改動後重新檢查。"}
+      ],
+      "sources": ["S02", "S03", "S05"], "evidence": ["S02-2", "S03-1", "S03-2", "S03-3", "S05-1", "S05-2"], "wiki": ["rag-indexing-wiki"]
+    },
+    {
+      "id": "roles", "kind": "compare", "title": "檢索器和生成器各有工作",
+      "lead": "Hugging Face 文件提供一個具體的組件範例。",
+      "items": [
+        {"label": "Retriever", "text": "取得相關段落。索引決定可搜尋的文件範圍。"},
+        {"label": "Generator", "text": "根據問題及檢索內容生成文字。RagSequenceForGeneration 是文件中的一種模型。"},
+        {"label": "實作界線", "text": "本作業未執行模型。HTML 簡報只用來教學，Wiki 查詢使用本機關鍵字比對。"}
+      ],
+      "sources": ["S04"], "evidence": ["S04-1", "S04-2", "S04-3"], "wiki": ["rag-source-huggingface"]
+    },
+    {
+      "id": "example", "kind": "example", "title": "用一個課程文件問題走一次流程",
+      "lead": "以下是人工設計的教學示例，未呼叫模型，也不是實測回答。",
+      "items": [
+        {"label": "問題", "text": "「作業要用什麼格式繳交？」"},
+        {"label": "檢索片段", "text": "示例文件〈課程作業〉第 2 節：「請以 HTML 簡報繳交。」"},
+        {"label": "增強後的提示", "text": "請依據這段文件回答問題，並標明使用的章節。"},
+        {"label": "示例答案", "text": "「請以 HTML 簡報繳交。（來源：〈課程作業〉第 2 節）」"}
+      ],
+      "sources": ["S02"], "evidence": ["S02-2"], "wiki": ["rag-source-microsoft"]
+    },
+    {
+      "id": "evaluate", "kind": "checks", "title": "檢查檢索、敘述與引用",
+      "lead": "依 Wiki 內容設計的作業檢查清單，三個位置分開看。",
+      "items": [
+        {"label": "檢索是否找到依據？", "text": "先讀取回的片段。只有相同關鍵字，仍可能沒有問題需要的資訊。"},
+        {"label": "敘述是否符合片段？", "text": "逐句核對大綱。沒有支持資料時，回到查詢或補來源。"},
+        {"label": "引用能否回到來源？", "text": "從段落編號回到 Wiki 章節，再開啟原始文件。"}
+      ],
+      "sources": ["S02", "S03"], "evidence": ["S02-2", "S03-3"], "wiki": ["rag-evaluation-wiki"]
+    },
+    {
+      "id": "wiki", "kind": "compare", "title": "這次 Wiki 匯入了五份來源筆記",
+      "lead": "保留可重跑的查詢紀錄，讓大綱與來源段落能互相對照。",
+      "items": [
+        {"label": "5 份來源，15 個段落", "text": "論文、Microsoft、LlamaIndex、Hugging Face、LangChain。筆記為原文的繁體中文整理。"},
+        {"label": "3 次主題查詢", "text": "分別查詢基本概念、索引與切分、評估與引用，再整理綜合知識頁。"},
+        {"label": "1 次缺口測試", "text": "「量子糾纏」沒有命中段落，工具提示改寫問題或補資料。"}
+      ],
+      "sources": ["S01", "S02", "S03", "S04", "S05"], "evidence": ["S01-1", "S02-2", "S03-2", "S04-2", "S05-1"], "wiki": ["rag-indexing-wiki", "rag-evaluation-wiki"]
+    },
+    {
+      "id": "workflow", "kind": "workflow", "title": "來源檢查提前到匯入之前",
+      "lead": "本次觀察：LangChain 來源轉址，因此先核對網址、頁名與內容。",
+      "items": [
+        {"label": "取得與核對來源", "text": "確認頁面仍符合主題，再整理五份實質筆記。"},
+        {"label": "Ingest 與 Query", "text": "建立索引、查詢片段；缺資料就回到來源整理。"},
+        {"label": "大綱與證據檢查", "text": "每頁對照 Wiki 與來源；不支持就改寫或重新查詢。"},
+        {"label": "生成與瀏覽檢查", "text": "生成 HTML，檢查連結、鍵盤操作與手機排版。"}
+      ],
+      "sources": ["S05"], "evidence": ["S05-3"], "wiki": ["rag-evaluation-wiki"]
+    },
+    {
+      "id": "references", "kind": "references", "title": "參考資料與下一步",
+      "lead": "你現在可以說明 RAG 的流程，並從 Wiki 段落追溯原始資料。",
+      "items": [
+        {"label": "練習", "text": "挑一份自己的文件，寫出問題、支持答案的段落與引用位置。先檢查資料是否足夠，再考慮接上模型。"}
+      ],
+      "sources": ["S01", "S02", "S03", "S04", "S05"], "evidence": ["S01-1", "S02-2", "S03-2", "S04-2", "S05-1"], "wiki": ["rag-indexing-wiki", "rag-evaluation-wiki"]
+    }
+  ]
+}

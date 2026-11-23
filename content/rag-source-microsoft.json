@@ -1,0 +1,36 @@
+{
+  "slug": "rag-source-microsoft",
+  "title": "S02｜Microsoft 的 RAG 與索引概念",
+  "category": "RAG",
+  "summary": "整理 Retrieve、Augment、Generate 的工作順序，以及索引和來源欄位的用途。",
+  "sections": [
+    {
+      "heading": "概念：依據自己的資料回答",
+      "paragraphs": [
+        "Microsoft 文件把 RAG 描述為將搜尋與 LLM 結合的模式。當問題涉及私人文件或經常變動的資訊時，應用可以先取得相關內容，再將內容放進模型輸入，讓回答依據這些資料。"
+      ]
+    },
+    {
+      "heading": "方式：檢索、增強、生成",
+      "paragraphs": [
+        "Retrieve 先查索引或資料儲存空間；Augment 將問題與取回的資料組成提示；Generate 由模型產生回答。索引可支援關鍵字、向量或混合搜尋，也能保留文件標題、網址與檔名，協助回答引用來源。"
+      ]
+    },
+    {
+      "heading": "應用界線與查閱紀錄",
+      "paragraphs": [
+        "本筆記依官方概念頁的 RAG 流程與索引章節整理，查閱日期為 2026-11-23。頁面也介紹 Foundry 服務與 agentic retrieval；本專案只引用通用概念，沒有建立 Azure 服務，亦未驗證任何雲端功能。"
+      ]
+    }
+  ],
+  "takeaways": [
+    "先取得相關資料，再交給模型生成回答。",
+    "來源標題和網址應與檢索內容一起保存。"
+  ],
+  "references": [
+    {
+      "label": "Microsoft Learn：Retrieval augmented generation (RAG) and indexes",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation"
+    }
+  ]
+}

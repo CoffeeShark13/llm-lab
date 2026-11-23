@@ -1,0 +1,13 @@
+{
+  "slug": "rag-source-paper",
+  "title": "S01｜RAG 原始論文閱讀筆記",
+  "category": "RAG",
+  "summary": "整理 Lewis 等人的 RAG 論文摘要，理解模型參數與外部檢索資料如何共同參與生成。",
+  "sections": [
+    {"heading": "概念：兩種知識記憶", "paragraphs": ["Lewis 等人在 Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks 中，結合模型內的參數式記憶與外部的非參數式記憶。論文使用預訓練 seq2seq 模型生成文字，透過神經檢索器從 Wikipedia 的稠密向量索引取得段落。"]},
+    {"heading": "方式：讓生成以檢索段落為條件", "paragraphs": ["論文比較兩種形式：RAG-Sequence 在整段生成序列中使用相同的檢索段落，RAG-Token 允許不同 token 使用不同段落。這裡的 RAG 是具體模型設計，不能將它的所有訓練細節直接套到每個現代 RAG 應用。"]},
+    {"heading": "閱讀範圍與限制", "paragraphs": ["本筆記依 arXiv v4 摘要整理，查閱日期為 2026-11-23。論文報告的實驗結果屬於作者的資料集與設定，本專案未重現模型訓練或效能測試，也不把論文結果當成本網站的實測成果。"]}
+  ],
+  "takeaways": ["外部檢索內容能成為文字生成的依據。", "區分原始 RAG 模型與後來泛稱的檢索增強應用模式。"],
+  "references": [{"label": "Lewis 等，Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks，arXiv v4", "url": "https://arxiv.org/abs/2005.11401v4"}]
+}

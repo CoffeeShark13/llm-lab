@@ -1,0 +1,17 @@
+{
+  "slug": "rag-indexing-wiki",
+  "title": "Wiki 綜合筆記：從文件到可引用的片段",
+  "category": "RAG",
+  "summary": "交叉整理 S02、S03 與 S05，說明資料準備、片段來源與本機 Wiki 的索引界線。",
+  "sections": [
+    {"heading": "概念：先整理資料，再處理問題", "paragraphs": ["依 S03 的五階段說明與 S05 的索引教學，資料載入與索引可以先完成，查詢時再取出相關片段。這能讓資料整理流程與回答流程各自檢查。這份 Wiki 綜合筆記由 Codex 讀取本機查詢紀錄 02-indexing.json 後整理。"]},
+    {"heading": "方式：保留片段的文件與章節", "paragraphs": ["S03 說明 Document 與 Node 的關係，S02 提到索引可儲存標題、網址及檔名。本專案據此為每個段落保留來源編號、文章 slug 與章節錨點，讓讀者從搜尋結果回到文章，並由參考資料開啟原始文件。S05 的向量化步驟屬於官方教學，本機 Wiki 使用文字關鍵字比對。"], "code": "來源筆記 S01–S05\n  → ingest：驗證 JSON、建立文章與段落索引\n  → query：依關鍵字取回段落編號\n  → Codex：閱讀段落並整理教學大綱\n  → 檢查：確認每頁的引用與 Wiki 內容對應"},
+    {"heading": "限制：命中關鍵字不代表回答有依據", "paragraphs": ["本機查詢只回傳文字片段，未呼叫 LLM 或建立 embeddings。結果可能因用詞不同而漏掉資料，也可能命中提到某技術卻未解釋該技術的段落。生成前仍須閱讀全文，確認片段確實支持要寫的句子。"]}
+  ],
+  "takeaways": ["片段編號與章節連結讓來源可以追溯。", "關鍵字查詢負責提供候選證據，AI 整理後仍需檢查。"],
+  "references": [
+    {"label": "S02｜Microsoft：RAG and indexes", "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation"},
+    {"label": "S03｜LlamaIndex：Introduction to RAG", "url": "https://developers.llamaindex.ai/python/framework/understanding/rag/"},
+    {"label": "S05｜LangChain：RAG with Deep Agents", "url": "https://docs.langchain.com/oss/python/deepagents/rag"}
+  ]
+}

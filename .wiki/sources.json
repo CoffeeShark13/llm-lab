@@ -1,0 +1,11 @@
+{
+  "reviewed_on": "2026-11-23",
+  "scope": "由 Codex 閱讀原始網頁後整理的繁體中文來源筆記，非原文全文快照。五份筆記經 ingest 轉為 Wiki 文章與段落索引。",
+  "sources": [
+    {"id": "S01", "file": "rag-source-paper.json"},
+    {"id": "S02", "file": "rag-source-microsoft.json"},
+    {"id": "S03", "file": "rag-source-llamaindex.json"},
+    {"id": "S04", "file": "rag-source-huggingface.json"},
+    {"id": "S05", "file": "rag-source-langchain.json"}
+  ]
+}
